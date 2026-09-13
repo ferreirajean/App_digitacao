@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Style.css" />
+    <title>Teste de Digitação</title>
+  </head>
+  <body>
+    <!-- ============================= -->
+    <!-- 1. CABEÇALHO -->
+    <!-- ============================= -->
+
+    <div class="app">
+      <header class="app-header">
+        <div class="app-title">
+          <span class="app-icon">⌨️</span>
+
+          <div>
+            <h1>Typing Speed Test</h1>
+            <p class="app-subtitle">Type as fast as you can in 60 seconds</p>
+          </div>
+        </div>
+
+        <div class="personal-best">
+          <span class="trophy-icon">🏆</span>
+          <span class="pb-label">Personal best:</span>
+          <span class="pb-value" id="personal-best-value">-- WPM</span>
+        </div>
+      </header>
+
+      <!-- ============================= -->
+      <!-- 2. BARRA DE STATS + CONTROLES -->
+      <!-- ============================= -->
+
+      <section class="stats-bar">
+        <!-- Stats ao vivo: atualizadas pelo JS durante a digitação -->
+
+        <div class="live-stats">
+          <div class="stat">
+            <span class="stat-label">WPM:</span>
+            <span class="stat-value" id="wpm-value">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Accuracy:</span>
+            <span class="stat-value" id="accuracy-value">100%</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Time:</span>
+            <span class="stat-value" id="time-value">0:60</span>
+          </div>
+        </div>
+
+        <!-- Controles: <select> nativo, estilizado depois via CSS -->
+
+        <div class="controls">
+          <label class="control">
+            <span class="control-label">Difficulty:</span>
+            <select id="difficulty-select">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </label>
+
+          <label class="control">
+            <span class="control-label">Mode:</span>
+            <select id="mode-select">
+              <option value="timed" selected>Timed (60s)</option>
+              <option value="passage">Passage</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================= -->
+      <!-- 3. ÁREA DO TESTE -->
+      <!-- ============================= -->
+
+      <section class="test-area">
+        <!-- Container relativo: passagem + overlay ficam sobrepostos aqui -->
+
+        <div class="passage-container">
+          <div class="passage-text" id="passage-text" tabindex="0">
+            <!-- conteúdo gerado dinamicamente -->
+          </div>
+
+          <!-- Input escondido: captura o teclado de verdade (inclusive mobile) -->
+
+          <input
+            type="text"
+            id="hidden-input"
+            class="hidden-input"
+            autocomplete="off"
+            autocapitalize="off"
+            autocorrect="off"
+            spellcheck="false"
+          />
+
+          <!-- Overlay "não iniciado": aparece por cima do texto borrado -->
+
+          <div class="start-overlay" id="start-overlay">
+            <button class="start-btn" id="start-btn">Start typing Test</button>
+            <p class="start-hint">Or click the text and start typing</p>
+          </div>
+        </div>
+
+        <button class="restart-btn" id="restart-btn" hidden>
+          Restart Test <span class="restart-icon">↺</span>
+        </button>
+      </section>
+
+      <!-- ============================= -->
+      <!-- 4. TELA DE RESULTADO -->
+      <!-- ============================= -->
+
+      <section class="results-screen" id="results-screen" hidden>
+        <div class="results-icon" id="results-icon">✅</div>
+
+        <h2 class="results-title" id="results-title">Test Complete!</h2>
+        <p class="results-subtitle" id="results-subtitle">
+          Solid run. Keep pushing to beat your high score.
+        </p>
+
+        <div class="results-boxes">
+          <div class="result-box">
+            <span class="result-label">WPM:</span>
+            <span class="result-value" id="result-wpm">0</span>
+          </div>
+
+          <div class="result-box">
+            <span class="result-label">Accuracy:</span>
+            <span class="result-value" id="result-accuracy">0%</span>
+          </div>
+
+          <div class="result-box">
+            <span class="result-label">Characters</span>
+            <span class="result-value" id="result-characters">
+              <span class="correct-chars">0</span>/<span class="incorrect-chars"
+                >0</span
+              >
+            </span>
+          </div>
+        </div>
+
+        <button class="results-btn" id="results-btn">
+          Go Again <span class="restart-icon">↺</span>
+        </button>
+      </section>
+    </div>
+    <script src="Script.js"></script>
+  </body>
+</html>
